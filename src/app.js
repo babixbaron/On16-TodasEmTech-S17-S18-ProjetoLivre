@@ -10,6 +10,9 @@ const empresas = require("./routes/empresaRouter")
 const vagas = require("./routes/vagasRouter")
 const dataBase = require("./model/database");
 
+const swaggerUi = require('swagger-ui-express');
+const swaggerFile = require('../swagger/swagger_output.json');
+
 
 require('dotenv-safe').config()
 
@@ -38,6 +41,8 @@ app.use("/", index);
 app.use("/candidatas", candidatas);
 app.use("/empresas", empresas);
 app.use("/vagas", vagas)
+
+app.use('/minha-rota-de-documentacao', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 
 module.exports = app
